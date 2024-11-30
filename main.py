@@ -32,17 +32,17 @@ class Query(db.Model):
     def __repr__(self):
         return f'Query with id {self.id}, level {self.level}, assigned to {self.agent_assigned}, code {self.code}, asked at {self.query}'
 
-agentdb = [
-    {
-        'name': 'General',
-    },
-    {
-        'name': 'Suraj',
-    },
-    {
-        'name': 'Pooraj',
-    },
-]
+# agentdb = [
+#     {
+#         'name': 'General',
+#     },
+#     {
+#         'name': 'Suraj',
+#     },
+#     {
+#         'name': 'Pooraj',
+#     },
+# ]
 
 @app.route('/')
 @app.route('/home')
@@ -51,16 +51,19 @@ def home():
 
 @app.route('/agents')
 def agents():
+    agentdb = Agent.query.all()
     return render_template('agents.html', agentdb=agentdb)
 
 @app.route('/create-agent', methods=['GET', 'POST'])
 def create_agent():
     form = CreateAgentForm()
     if form.validate_on_submit():
-        if {'name': form.name.data} in agentdb:
+        if Agent.query.filter_by(name=form.name.data).first():  
             flash(f'Agent with name {form.name.data} already exists.', 'warning')
         else:
-            agentdb.append({'name': form.name.data})
+            new_agent = Agent(name=form.name.data)
+            db.session.add(new_agent)
+            db.session.commit()
             flash(f'Agent with name {form.name.data} created.', 'success')
             return redirect(url_for('agents'))
     else:
