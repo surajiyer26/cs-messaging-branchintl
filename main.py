@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 from flask_socketio import join_room, leave_room, send, SocketIO
 import random
 from string import ascii_uppercase
-from forms import CreateAgentForm
+from forms import CreateAgentForm, CreateRoomForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '1f5d157db8961410fa567f402f995634'
@@ -43,6 +43,11 @@ def create_agent():
         if request.method == 'POST':
             flash('Form validation failed. Please check your input.', 'danger')
     return render_template('create_agent.html', form=form)
+
+@app.route('/create-room', methods=['GET', 'POST'])
+def create_room():
+    form = CreateRoomForm()
+    return render_template('create_room.html', form=form)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
