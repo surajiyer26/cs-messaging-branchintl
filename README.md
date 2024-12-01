@@ -8,3 +8,13 @@
 4. activate the virtual environment `venv\Scripts\activate.bat` (in case of windows)
 5. install the dependancies `pip install -r requirements.txt`
 6. run `flask --app main.py run`
+
+## features
+
+1. a messaging web application that can respond to incoming queries sent by customers
+2. multiple agents can log in at the **same time** and respond to incoming queries
+3. work is divided amongst the agents **equally**, queries are assigned to agents with lesser work
+4. incoming queries are preprocessed to calculate their **urgency level**
+5. **queries are prioritized** on basis of their urgency levels and timestamps
+6. a canned message feature that allows agents to quickly respond to enquiries using a set of **pre-configured stock messages**
+7. interactive UI by leveraging **websockets**, so that new incoming messages can show up in **real time**
