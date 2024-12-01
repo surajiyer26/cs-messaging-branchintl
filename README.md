@@ -18,3 +18,7 @@
 5. **queries are prioritized** on basis of their urgency levels and timestamps
 6. a canned message feature that allows agents to quickly respond to enquiries using a set of **pre-configured stock messages**
 7. interactive UI by leveraging **websockets**, so that new incoming messages can show up in **real time**
+
+## video demonstration
+
+ [youtube](https://youtu.be/IenwEZX-_pc) 
