@@ -7,18 +7,15 @@
                 <div class="alert alert-{{ category }}">{{ message }}</div>
             {% endfor %}
         {% endwith %}
-        <div class="d-grid gap-2">
-            <a href="/create-agent" class="btn btn-primary" role="button">Create An Agent</a>
-        </div>
-        {% for agent in agentdb %}
+        {% for query in querydb %}
         <div class="col-sm-6 mb-3 mb-sm-0 mt-3">
             <div class="card h-100">
               <div class="card-body">
-                <h5 class="card-title">{{ agent.name }}</h5>
-                <p class="card-text">Click on the button if you are {{ agent.name }}</p>
+                <h5 class="card-title">{{ query.query }}</h5>
+                <p class="card-text">Query of level {{ query.level }}, asked at {{ query.date }}</p>
                 <form method="POST">
-                    <input type="hidden" name="name" value="{{ agent.name }}">
-                    <button type="submit" class="btn btn-primary">Start resolving queries</button>
+                    <input type="hidden" name="code" value="{{ query.code }}">
+                    <button type="submit" class="btn btn-primary">Resolve</button>
                 </form>
               </div>
             </div>

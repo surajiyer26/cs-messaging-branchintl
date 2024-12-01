@@ -2,6 +2,11 @@
 {% block content %} 
 <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="row align-items-stretch w-50">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
         <div class="col-sm-6 mb-3 mb-sm-0">
             <div class="card h-100">
             <div class="card-body">

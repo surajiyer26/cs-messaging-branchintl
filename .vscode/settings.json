@@ -1,0 +1,5 @@
+{
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": false,
+    "javascript.validate.lint.unusedVariables": "ignore"
+}
